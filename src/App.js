@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from 'react'
+import BarSide from './components/BarSide'
+import Players from './components/Players'
+import Display from './components/Display'
+import { PlayerContext } from './context/PlayerContext'
 
-function App() {
+
+const App = () => {
+
+  const {audioRef , track} = useContext(PlayerContext)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  <div className= "h-screen bg-yellow-200">
+    <div className='h-[90%] flex bg-purple-500 '>
+      <BarSide/>
+      <Display/>
     </div>
-  );
+      <Players/>
+      <audio ref={audioRef} src={track.file} preload='auto'></audio>
+  </div>
+  )
 }
 
-export default App;
+export default App
